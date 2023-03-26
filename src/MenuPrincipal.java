@@ -15,31 +15,29 @@ public class MenuPrincipal {
 
 			if (seleccionInicial == "Conversor de moneda") {
 
-				String[] monedas = { "De soles a dólares", "De soles a euros", "De dólares a soles",
-						"De dólares a euros", "De euros a soles", "De euros a dólares" };
+				String dinero = (String) JOptionPane.showInputDialog(null, "Ingrese la cantidad de dinero");
 
-				String moneda = (String) JOptionPane.showInputDialog(null, "Seleccione qué moneda quiere convertir",
-						"Moneda", JOptionPane.DEFAULT_OPTION, null, monedas, monedas[0]);
+				if (VerificadorNumero.verificarNumero(dinero)) {
 
-				if (moneda != null) {
+					double cantidadDinero = Double.parseDouble(dinero);
 
-					String dinero = (String) JOptionPane.showInputDialog(null, "Ingrese la cantidad de dinero");
+					if (cantidadDinero >= 0) {
+						String[] monedas = { "De soles a dólares", "De soles a euros", "De soles a libras esterlinas",
+								"De soles a yen japonés", "De soles a won sul-coreano", "De dólares a soles",
+								"De euros a soles", "De libras esterlinas a soles", "De yen japonés a soles",
+								"De won sul-coreano a soles" };
 
-					if (dinero != null) {
+						String moneda = (String) JOptionPane.showInputDialog(null,
+								"Seleccione qué moneda quiere convertir", "Moneda", JOptionPane.DEFAULT_OPTION, null,
+								monedas, monedas[0]);
 
-						if (VerificadorNumero.verificarNumero(dinero)) {
-
-							double cantidadDinero = Double.parseDouble(dinero);
-
-							if (cantidadDinero >= 0) {
-								ConversorMoneda.convertirMoneda(cantidadDinero, moneda);
-							} else {
-								JOptionPane.showMessageDialog(null, "Ingrese números positivos", "Error",
-										JOptionPane.ERROR_MESSAGE);
-							}
-
+						if (moneda != null) {
+							ConversorMoneda.convertirMoneda(cantidadDinero, moneda);
 						}
 
+					} else {
+						JOptionPane.showMessageDialog(null, "Ingrese números positivos", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 
 				}
@@ -48,25 +46,21 @@ public class MenuPrincipal {
 
 			if (seleccionInicial == "Conversor de temperatura") {
 
-				String[] escalas = { "De celsius a farenheit", "De celsius a kelvin", "De farenheit a celsius",
-						"De farenheit a kelvin", "De kelvin a celsius", "De kelvin a farenheit" };
+				String grados = JOptionPane.showInputDialog(null, "Ingrese la temperatura");
 
-				String escala = (String) JOptionPane.showInputDialog(null,
-						"Seleccione qué temperatura quiere convertir", "Escala", JOptionPane.DEFAULT_OPTION, null,
-						escalas, escalas[0]);
+				if (VerificadorNumero.verificarNumero(grados)) {
 
-				if (escala != null) {
+					double temperatura = Double.parseDouble(grados);
 
-					String grados = JOptionPane.showInputDialog(null, "Ingrese la temperatura");
+					String[] escalas = { "De celsius a farenheit", "De celsius a kelvin", "De farenheit a celsius",
+							"De farenheit a kelvin", "De kelvin a celsius", "De kelvin a farenheit" };
 
-					if (grados != null) {
+					String escala = (String) JOptionPane.showInputDialog(null,
+							"Seleccione qué temperatura quiere convertir", "Escala", JOptionPane.DEFAULT_OPTION, null,
+							escalas, escalas[0]);
 
-						if (VerificadorNumero.verificarNumero(grados)) {
-							double temperatura = Double.parseDouble(grados);
-							ConversorTemperatura.convertirTemperatura(temperatura, escala);
-
-						}
-
+					if (escala != null) {
+						ConversorTemperatura.convertirTemperatura(temperatura, escala);
 					}
 
 				}

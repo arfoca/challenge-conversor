@@ -11,6 +11,9 @@ public class VerificadorNumero {
 		} catch (NumberFormatException exception) {
 			JOptionPane.showMessageDialog(null, "Ingrese números", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
+		} catch (NullPointerException exception) {
+			JOptionPane.showMessageDialog(null, "Conversión cancelada", "Cancelar", JOptionPane.INFORMATION_MESSAGE);
+			return false;
 		}
 
 	}
